@@ -1,0 +1,52 @@
+1. Open the diamonds dataset
+```{r}
+library(ltm)
+library(ggplot2)
+data(diamonds)
+
+```
+2. What would be the appropriate correlation to calculate to determine the relationship between clarity and price? Explain you reasoning
+```{r}
+View(diamonds)
+### I would use ANOVA because we're trying to find the difference between categorical data (clarity) and price (continuous).###
+```
+3. Calculate the correlation you chose in #2. (Hint: you may need ot change a class of variable)
+```{r}
+as.factor(diamonds$clarity)
+diamondAnova<-lm(price~clarity, data=diamonds)
+diamondAnova
+```
+4. Calculate a spearman's rho and a kendall's tau for the relationship between carat and clarity. What do you notice about the results?
+```{r}
+cor.test(diamonds$carat, diamonds$clarity, method = "spearman")
+cor.test(diamonds$carat, diamonds$clarity, method = "kendall")
+
+```
+5. Use a wilcoxen test to compare the price of "premium" diamonds and "very good" diamonds. How does this compare to the results of a t test?
+```{r}
+colnames(diamonds)
+wilcox.test(cut~price, data=diamonds)
+```
+
+6. For the following questions, use the following scenario: 
+You are given a 25 question test that you didn't study for and got 15 correct. If you were to completely guess on all questions, would you do better than chance if: 
+
+a) it was all true/false questions
+
+b) it was multiple choice and all questions had 3 choices
+
+c) it was multiple choice and all questions had 4 choices
+
+7) open the HairEyeColor dataset
+```{r}
+data(HairEyeColor)
+HairEyeColor<-as.data.frame(HairEyeColor)
+```
+
+8) Does red hair occur more often than chance? 
+
+9) Do Hazel eyes occur more often than chance?
+
+
+
+
